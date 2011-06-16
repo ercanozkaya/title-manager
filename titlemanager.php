@@ -1,9 +1,8 @@
 <?php
 /**
- * @package		Title Manager
- * @copyright	(C) 2008 - 2011 Ercan Ozkaya. All rights reserved.
+ * @copyright	(C) 2008 - 2011 Ercan Özkaya. All rights reserved.
  * @license     GNU GPL <http://www.gnu.org/licenses/gpl.html>
- * @author		Ercan Ozkaya <ozkayaercan@gmail.com>
+ * @author		Ercan Özkaya <ozkayaercan@gmail.com>
  */
 
 defined('_JEXEC') or die;
@@ -12,16 +11,26 @@ jimport('joomla.plugin.plugin');
 
 class plgSystemTitlemanager extends JPlugin
 {
+	public function onAfterInitialise()
+	{
+		if (version_compare(JVERSION, '1.6', '>=')) {
+			$config = JFactory::getConfig();
+			if ($config->get('sitename_pagetitles')) {
+				$config->set('sitename_pagetitles', 0);
+			}
+		}
+	}
+	
 	public function onAfterDispatch()
 	{
 		$app = JFactory::getApplication();
-		if ($app->isAdmin()) {
+		if (!$app->isSite()) {
 			return;
 		}
 
+		$params = $this->params;
 		$document = JFactory::getDocument();
 		$menu = JSite::getMenu();
-		$params = $this->params;
 		$is_frontpage = ($menu->getActive() == $menu->getDefault());
 		
 		$sitename = $params->get('sitename') ? $params->get('sitename') : $app->getCfg('sitename');
@@ -38,6 +47,11 @@ class plgSystemTitlemanager extends JPlugin
 		// {s} is used to protect the leading and trailing spaces
 		$separator = str_replace('{s}', ' ', $params->get('separator'));
 		$current = $document->getTitle();
+		
+		// Joomla 1.6 already sets title to the site name if there is no active menu item
+		if ($current === $sitename) {
+			return;
+		}
 
 		if ($params->get('position') == 'after') {
 			$title = $current.$separator.$sitename;
