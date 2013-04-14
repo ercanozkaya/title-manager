@@ -2,7 +2,8 @@
 /**
  * @copyright	(C) 2008 - 2011 Ercan Özkaya. All rights reserved.
  * @license     GNU GPL <http://www.gnu.org/licenses/gpl.html>
- * @author		Ercan Özkaya <ozkayaercan@gmail.com>
+ * @author		Ercan Özkaya <ercan@ozkaya.net>
+ * @link        http://ercanozkaya.com
  */
 
 defined('_JEXEC') or die;
@@ -13,12 +14,10 @@ class plgSystemTitlemanager extends JPlugin
 {
 	public function onAfterInitialise()
 	{
-		if (version_compare(JVERSION, '1.6', '>=')) {
-			$config = JFactory::getConfig();
-			if ($config->get('sitename_pagetitles')) {
-				$config->set('sitename_pagetitles', 0);
-			}
-		}
+        $config = JFactory::getConfig();
+        if ($config->get('sitename_pagetitles')) {
+            $config->set('sitename_pagetitles', 0);
+        }
 	}
 	
 	public function onAfterDispatch()
@@ -28,9 +27,9 @@ class plgSystemTitlemanager extends JPlugin
 			return;
 		}
 
-		$params = $this->params;
+		$params   = $this->params;
 		$document = JFactory::getDocument();
-		$menu = JSite::getMenu();
+		$menu     = $app->getMenu();
 		$is_frontpage = ($menu->getActive() == $menu->getDefault());
 		
 		$sitename = $params->get('sitename') ? $params->get('sitename') : $app->getCfg('sitename');

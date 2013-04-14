@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<install version="1.5" type="plugin" group="system" method="upgrade">
-	<name>System - Title Manager</name>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>plg_system_titlemanager</name>
 	<author>Ercan Özkaya</author>
-	<creationDate>April 2011</creationDate>
-	<copyright>(C) 2008 - 2011 Ercan Özkaya. All rights reserved.</copyright>
+	<creationDate>April 2013</creationDate>
+	<copyright>(C) 2013 Ercan Özkaya. All rights reserved.</copyright>
 	<license>GNU/GPL http://www.gnu.org/licenses/gpl.html</license>
-	<authorEmail>ozkayaercan@gmail.com</authorEmail>
-	<authorUrl>http://ercan.us/</authorUrl>
-	<version>2.0</version>
-	<description>PLG_SYSTEM_TITLEMANAGER_XML_DESCRIPTION</description>
+	<authorEmail>ercan@ozkaya.net</authorEmail>
+	<authorUrl>http://ercanozkaya.com/</authorUrl>
+	<version>3.0</version>
+	<description>Title Manager</description>
 	<files>
 		<filename plugin="titlemanager">titlemanager.php</filename>
 	</files>
@@ -33,17 +33,4 @@
 		</fieldset>
 		</fields>
 	</config>
-	<params>
-		<param name="position" type="radio" default="after" label="TM_POSITION" description="TM_POSITION_DESC">
-			<option value="before">TM_BEFORE</option>
-			<option value="after">TM_AFTER</option>
-		</param>
-		<param name="frontpage" type="radio" default="1" label="TM_FRONTPAGE" description="TM_FRONTPAGE_DESC">
-			<option value="1">TM_YES</option>
-			<option value="0">TM_NO</option>
-		</param>
-		<param name="separator" type="text" default="{s}-{s}" label="TM_SEPARATOR" description="TM_SEPARATOR_DESC" />
-		<param name="sitename" type="text" default="" label="TM_ALTERNATIVE" description="TM_ALTERNATIVE_DESC" />
-		<param name="frontpage_sitename" type="text" default="" label="TM_FRONTPAGE_DEFAULT" description="TM_FRONTPAGE_DEFAULT_DESC" />
-	</params>
-</install>
+</extension>
